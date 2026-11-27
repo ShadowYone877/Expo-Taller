@@ -80,6 +80,12 @@
 /* ---------- 2. Reset y base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* El atributo [hidden] debe ganar SIEMPRE: sin esta regla, cualquier regla
+   de autor con display (flex/grid) lo anula y deja paneles invisibles
+   (menú y vista general) cubriendo la pantalla, bloqueando clics, scroll,
+   touch y swipe. */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -232,6 +238,8 @@ sub { font-size: .7em; }
   position: absolute; inset: 0;
   overflow-y: auto; overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  /* El scroll vertical es del navegador; el gesto horizontal es nuestro (swipe) */
+  touch-action: pan-y pinch-zoom;
   padding: clamp(1.1rem, 3.2vw, 2.6rem) clamp(1.1rem, 4.5vw, 3.4rem) clamp(1.4rem, 3vw, 2.4rem);
   background: var(--c-bg);
   opacity: 0; visibility: hidden; pointer-events: none;

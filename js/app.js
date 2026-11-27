@@ -318,9 +318,8 @@
     if (i !== current) goTo(i, { updateHash: false });
   });
 
-  /* Flechas en móviles: los botones grandes también responden a swipe en ellos */
-  btnNext.addEventListener('touchend', (e) => { e.preventDefault(); next(); }, { passive: false });
-  btnPrev.addEventListener('touchend', (e) => { e.preventDefault(); prev(); }, { passive: false });
+  /* Nota: los taps en los botones se manejan con el clic nativo del navegador
+     (touchstart → touchend → click); aquí solo se evita el gesto de swipe. */
 
   /* ---------- Arranque ---------- */
   goTo(initialIndex(), { force: true, updateHash: false });
