@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#071a2e">
+  <meta name="description" content="Presentación interactiva del Protocolo de Investigación y POE para la plataforma AI Pharma / HEOR Intelligence — Taller de Investigación I, TecNM · Instituto Tecnológico de Iztapalapa I.">
+  <meta property="og:title" content="Protocolo de Investigación y POE · AI Pharma / HEOR Intelligence">
+  <meta property="og:description" content="Evaluación empírica de un flujo multiagente con recuperación aumentada, trazabilidad por campo y gobernanza de calidad (COFEPRIS / IMSS / 21 CFR Part 11).">
+  <meta property="og:type" content="website">
+  <title>Protocolo de Investigación POE · AI Pharma / HEOR Intelligence — Presentación</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#slides">Saltar a las diapositivas</a>
+
+  <!-- ===== Sprite de iconos (SVG inline, sin dependencias) ===== -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></symbol>
+      <symbol id="i-compress" viewBox="0 0 24 24"><path d="M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5"/></symbol>
+      <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+      <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4L2.8 20h18.4L12 4z"/><path d="M12 10v4.5M12 17.6v.1"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.8c.6.5 1 1.2 1 2h5c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.4"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3h5M10.5 3v6L5.2 18.4A2 2 0 0 0 6.9 21.4h10.2a2 2 0 0 0 1.7-3L13.5 9V3"/><path d="M7.6 15h8.8"/></symbol>
+      <symbol id="i-library" viewBox="0 0 24 24"><path d="M5 20V10M10 20V4M15 20v-8M20 20V7"/><path d="M3 20h18"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.8 20c.6-3.3 3.1-5.2 6.2-5.2s5.6 1.9 6.2 5.2"/><path d="M16 5.3a3.5 3.5 0 0 1 0 6.6M17.4 14.9c2 .7 3.4 2.4 3.8 5.1"/></symbol>
+      <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.4c0 4.4-2.9 7.9-7 9.8-4.1-1.9-7-5.4-7-9.8V5.8L12 3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9L19 16z"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7l-1.3 1.3"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 1 0 5.7 5.7l1.3-1.3"/></symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 5h11l-2 3.5L16 12H5"/></symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M9 6.5C6.5 8 5.5 10 5.5 12.5c0 2 1.2 3.3 3 3.3s3-1.2 3-2.9c0-1.6-1-2.7-2.6-2.9.1-1.6 1-3 2.6-4.1L9 6.5zM18.5 6.5c-2.5 1.5-3.5 3.5-3.5 6 0 2 1.2 3.3 3 3.3s3-1.2 3-2.9c0-1.6-1-2.7-2.6-2.9.1-1.6 1-3 2.6-4.1l-2.5-1.4z"/></symbol>
+      <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><path d="M6.5 10v4a3 3 0 0 0 3 3H14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="deck" id="deck" data-theme="dark">
+    <!-- ===== Barra de progreso ===== -->
+    <div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+    <!-- ===== Barra superior ===== -->
+    <header class="topbar">
+      <button class="icon-btn" id="btn-menu" type="button" aria-label="Abrir índice de la presentación" aria-expanded="false" aria-controls="menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+
+      <div class="topbar__brand">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span class="topbar__section" id="section-label" aria-live="polite">Portada</span>
+      </div>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" id="btn-overview" type="button" aria-label="Vista general de diapositivas (tecla O)" aria-expanded="false" aria-controls="overview">
+          <svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-fullscreen" type="button" aria-label="Activar pantalla completa (tecla F)">
+          <svg class="icon icon--expand" aria-hidden="true"><use href="#i-expand"/></svg>
+          <svg class="icon icon--compress" aria-hidden="true"><use href="#i-compress"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== Contenedor de diapositivas ===== -->
+    <main class="slides" id="slides" tabindex="-1">
+
+      <!-- ============ 1 · PORTADA ============ -->
+      <section class="slide slide--cover" data-section="Portada" data-title="Portada" data-theme="dark" aria-label="Diapositiva 1: Portada">
+        <div class="cover-glow" aria-hidden="true"></div>
+        <div class="slide__inner cover">
+          <div class="cover__main stagger">
+            <p class="cover__inst">
+              <span class="cover__inst-main">Tecnológico Nacional de México</span>
+              <span class="cover__inst-sub">Instituto Tecnológico de Iztapalapa I</span>
+            </p>
+            <p class="cover__course">Ingeniería en Sistemas Computacionales · Taller de Investigación I (ACA-0909)</p>
+            <h1 class="cover__title">
+              Protocolo de investigación y especificación de
+              <span class="grad">Procedimientos Operativos Estándar (POE)</span>
+              para la plataforma <em>AI Pharma / HEOR Intelligence</em>
+            </h1>
+            <p class="cover__subtitle">
+              Evaluación empírica de un flujo multiagente con recuperación aumentada, trazabilidad por campo y
+              gobernanza de calidad (COFEPRIS / IMSS / 21 CFR Part 11) para la extracción estructurada de
+              evidencia clínica y económica.
+            </p>
+            <div class="cover__badges">
+              <span class="pill pill--accent"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Presentación · 20–30 min</span>
+              <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg> Versión 1.0 · Noviembre 2026</span>
+              <span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg> MVP: módulo AI Evidence Review (POE-01)</span>
+            </div>
+          </div>
+
+          <div class="cover__team stagger">
+            <h2 class="cover__team-title">Integrantes del equipo de investigación</h2>
+            <ul class="team-list">
+              <li class="team-card"><span class="team-card__initials" aria-hidden="true">DV</span><span class="team-card__name">Díaz Vázquez<br>Regina Valeria</span></li>
+              <li class="team-card"><span class="team-card__initials" aria-hidden="true">HY</span><span class="team-card__name">Hernández Yonemoto<br>Jorge Gonzalo</span></li>
+              <li class="team-card"><span class="team-card__initials" aria-hidden="true">NR</span><span class="team-card__name">Navarrete Rubín<br>Daniela</span></li>
+              <li class="team-card"><span class="team-card__initials" aria-hidden="true">SP</span><span class="team-card__name">Sánchez Pinto<br>Alessandro</span></li>
+            </ul>
+            <p class="cover__advisor">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>
+              Docente / asesor principal: <strong>Herrera Zúñiga Leonardo David</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 2 · PLANTEAMIENTO DEL PROBLEMA ============ -->
+      <section class="slide" data-section="Planteamiento del problema" data-title="Planteamiento del problema" data-theme="light" aria-label="Diapositiva 2: Planteamiento del problema">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">01 · Planteamiento del problema</p>
+            <h2 class="slide__title">Extraer evidencia hoy es lento, caro… y peligroso si la IA no se controla</h2>
+            <p class="slide__lead">
+              En IMSS, COFEPRIS, Big Pharma y CROs, las decisiones dependen de matrices de evidencia estructurada.
+              Extraerlas manualmente consume cientos de horas de especialistas y cualquier error inicial se propaga
+              a los análisis económicos (HEOR) y regulatorios posteriores.
+            </p>
+          </header>
+
+          <div class="grid grid--3 stagger">
+            <article class="card card--danger">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-alert"/></svg></span>
+              <h3 class="card__title">Error humano y alto costo</h3>
+              <p class="card__text">La revisión por una sola persona produce omisiones y errores de transcripción: el estándar exige <strong>doble extracción independiente</strong>, que es lenta y costosa.</p>
+              <p class="card__ref">Buscemi et al. (2006); Higgins et al. (2023)</p>
+            </article>
+
+            <article class="card card--warn">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>
+              <h3 class="card__title">Alucinación en LLM</h3>
+              <p class="card__text">Automatizar la lectura con IA convencional sin verificación introduce el riesgo de <strong>cifras plausibles pero falsas</strong>, mezclar grupos de pacientes o inventar resultados.</p>
+              <p class="card__ref">Ji et al. (2023); Khraisha et al. (2024)</p>
+            </article>
+
+            <article class="card card--info">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-shield"/></svg></span>
+              <h3 class="card__title">Auditoría regulatoria</h3>
+              <p class="card__text">COFEPRIS, IMSS y <strong>21 CFR Part 11</strong> exigen que cada dato pueda rastrearse hasta su origen exacto: ninguna “caja negra” es aceptable.</p>
+              <p class="card__ref">Especificación (§9.2); normativas sanitarias</p>
+            </article>
+          </div>
+
+          <div class="callout callout--gap stagger">
+            <span class="callout__tag">Brecha de conocimiento</span>
+            <p>Se desconoce —de forma <strong>medible y reproducible</strong>— qué tan exacta es la extracción automatizada de PICO, endpoints y diseño por un flujo multiagente con POE, qué proporción de campos conserva una <strong>referencia válida</strong> y qué porcentaje de errores detecta un <strong>agente validador independiente</strong>.</p>
+          </div>
+
+          <div class="questions stagger">
+            <p class="questions__general">
+              <svg class="icon" aria-hidden="true"><use href="#i-quote"/></svg>
+              <span><strong>Pregunta general:</strong> ¿En qué medida un flujo multiagente guiado por POE-01 (RAG + trazabilidad por campo + validación independiente) extrae PICO, endpoints y diseño con exactitud y verificabilidad adecuadas, frente a una referencia humana doble y a una línea base sin controles?</span>
+            </p>
+            <ul class="questions__list">
+              <li><span class="tag">PE1</span> Exactitud (F1) por campo y por artículo frente a la línea base</li>
+              <li><span class="tag">PE2</span> % de campos críticos con referencia válida que respalda el dato</li>
+              <li><span class="tag">PE3</span> % de errores inyectados que detecta el validador ER-10</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3 · TIPO DE INVESTIGACIÓN ============ -->
+      <section class="slide" data-section="Tipo de investigación" data-title="Tipo de investigación" data-theme="light" aria-label="Diapositiva 3: Tipo de investigación">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">02 · Tipo de investigación</p>
+            <h2 class="slide__title">Aplicada, cuantitativa y experimental… con marco de Ciencia del Diseño</h2>
+            <p class="slide__lead">Clasificación metodológica del estudio bajo cinco criterios explícitos.</p>
+          </header>
+
+          <div class="grid grid--5 stagger">
+            <article class="type-card">
+              <span class="type-card__label">Por su finalidad</span>
+              <span class="type-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-bulb"/></svg></span>
+              <h3 class="type-card__title">Investigación aplicada</h3>
+              <p class="type-card__text">Resuelve un problema operativo concreto de extracción y auditoría documental mediante desarrollo y evaluación de software.</p>
+            </article>
+
+            <article class="type-card">
+              <span class="type-card__label">Por su enfoque</span>
+              <span class="type-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-cpu"/></svg></span>
+              <h3 class="type-card__title">Cuantitativo <span class="soft">+ cualitativo</span></h3>
+              <p class="type-card__text">Precisión, exhaustividad, F1, cobertura de citas y detección de errores; complementado con análisis cualitativo de fallas naturales.</p>
+            </article>
+
+            <article class="type-card">
+              <span class="type-card__label">Por su alcance</span>
+              <span class="type-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-flow"/></svg></span>
+              <h3 class="type-card__title">Explicativo–comparativo y diagnóstico</h3>
+              <p class="type-card__text">Compara el efecto de RAG + validación cruzada (C1) frente a una línea base simple (C0) y diagnostica dónde falla el sistema.</p>
+            </article>
+
+            <article class="type-card">
+              <span class="type-card__label">Por su diseño</span>
+              <span class="type-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-layers"/></svg></span>
+              <h3 class="type-card__title">Experimento controlado intra-sujeto</h3>
+              <p class="type-card__text">Medidas emparejadas: ambas configuraciones procesan <strong>los mismos 30 artículos</strong>, eliminando diferencias por dificultad del texto.</p>
+            </article>
+
+            <article class="type-card type-card--accent">
+              <span class="type-card__label">Marco metodológico</span>
+              <span class="type-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-target"/></svg></span>
+              <h3 class="type-card__title">Ciencia del Diseño <span class="soft">(Design Science)</span></h3>
+              <p class="type-card__text">Construcción rigurosa del artefacto y su evaluación experimental como vehículo de conocimiento.</p>
+              <p class="card__ref">Hevner et al. (2004); Peffers et al. (2007)</p>
+            </article>
+          </div>
+
+          <div class="note-bar stagger">
+            <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+            <p><strong>Contraste experimental:</strong> <span class="mono">C0</span> = consulta directa al LLM sin RAG, cita ni validador · <span class="mono">C1</span> = flujo propuesto con RAG, ER-09 y ER-10 activos. Mediciones numéricas emparejadas y verificables.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4 · INTRODUCCIÓN ============ -->
+      <section class="slide" data-section="Introducción / Antecedentes" data-title="Introducción · Contexto y propósito" data-theme="light" aria-label="Diapositiva 4: Introducción">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">03 · Introducción</p>
+            <h2 class="slide__title">¿Qué propone este protocolo?</h2>
+          </header>
+
+          <div class="grid grid--2 stagger">
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg> Propósito</h3>
+              <ul class="checklist">
+                <li>Diseñar, implementar experimentalmente y evaluar un <strong>flujo multiagente gobernado por POE</strong> dentro de AI Pharma / HEOR Intelligence.</li>
+                <li>Extraer de forma ordenada los elementos clínicos <strong>PICO</strong>, los <strong>endpoints</strong> y el <strong>diseño metodológico</strong> de cada estudio.</li>
+                <li>Construir una <strong>matriz comparativa de evidencia</strong> y verificar la coherencia con un agente validador independiente.</li>
+                <li>Conservar una referencia navegable y verificable (<strong>EvidenceReference</strong>) para cada dato crítico.</li>
+              </ul>
+              <p class="note"><strong>Alcance:</strong> el Producto Mínimo Viable (MVP) del módulo <span class="mono">AI Evidence Review (POE-01)</span>.</p>
+            </div>
+
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg> Relación con la Especificación y la Matriz de POE</h3>
+              <p class="panel__text">Se adoptan los contratos de comunicación, servicios compartidos, criterios de aceptación y alcance del MVP de la <em>Especificación funcional y arquitectura de agentes v0.1</em> (EPAH, 2026), integrando la ingeniería de software con la gobernanza operativa del diagrama de dominio del docente.</p>
+              <div class="chips">
+                <span class="chip">Ingesta documental estandarizada</span>
+                <span class="chip">Flujo BS → IE → FE → BD<sub>est</sub></span>
+                <span class="chip">Integración económica (BD Cost / MAV)</span>
+                <span class="chip">Núcleo de calidad COFEPRIS / IMSS</span>
+                <span class="chip">Human-in-the-Loop auditado</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stagger">
+            <h3 class="flow-title">Cadena de valor regulada que conecta el sistema</h3>
+            <ol class="flow" aria-label="Cadena de valor de la plataforma">
+              <li class="flow__node flow__node--src">
+                <span class="flow__code">Fuentes primarias</span>
+                <span class="flow__desc">Big Pharma · Secretaría de Salud · indicadores ODS 100</span>
+              </li>
+              <li class="flow__node flow__node--active">
+                <span class="flow__code">BS → IE → FE → BD<sub>est</sub></span>
+                <span class="flow__desc">Búsqueda sistemática · inclusión/exclusión · texto completo · base de estudios</span>
+                <span class="flow__badge">Módulo POE-01</span>
+              </li>
+              <li class="flow__node">
+                <span class="flow__code">BD Cost / MAV</span>
+                <span class="flow__desc">Micro/macro-costeo y modelos de costo-efectividad</span>
+                <span class="flow__badge">Módulo POE-02</span>
+              </li>
+              <li class="flow__node flow__node--gov">
+                <span class="flow__code">Calidad y cumplimiento</span>
+                <span class="flow__desc">Auditoría, control de versiones y supervisión humana</span>
+                <span class="flow__badge">COFEPRIS · IMSS · 21 CFR 11</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 5 · ANTECEDENTES I ============ -->
+      <section class="slide" data-section="Introducción / Antecedentes" data-title="Antecedentes · Evidencia y extracción" data-theme="light" aria-label="Diapositiva 5: Antecedentes I">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">04 · Antecedentes (1/2)</p>
+            <h2 class="slide__title">La extracción de evidencia en salud: estándares que exigen rigor… y doble trabajo</h2>
+            <p class="slide__lead">Las decisiones sobre aprobación de medicamentos, guías clínicas y evaluación de tecnologías (HEOR) dependen de revisiones sistemáticas rigurosas.</p>
+          </header>
+
+          <ol class="timeline stagger">
+            <li class="tl-item">
+              <span class="tl-item__year">1995</span>
+              <h3 class="tl-item__title">Esquema PICO</h3>
+              <p class="tl-item__text">Richardson et al. proponen estructurar la información clínica en <strong>Población, Intervención, Comparador y Desenlaces</strong>: la estructura universal de extracción que este protocolo adopta.</p>
+            </li>
+            <li class="tl-item">
+              <span class="tl-item__year">2006</span>
+              <h3 class="tl-item__title">La doble extracción es el estándar</h3>
+              <p class="tl-item__text">Buscemi et al. demuestran empíricamente que extraer con <strong>una sola persona produce significativamente más errores</strong>: es el estándar de oro… y también el más costoso.</p>
+            </li>
+            <li class="tl-item">
+              <span class="tl-item__year">2021</span>
+              <h3 class="tl-item__title">PRISMA 2020</h3>
+              <p class="tl-item__text">Page et al. definen los elementos mínimos de reporte de toda revisión sistemática: <strong>transparencia total</strong> en selección y recolección de datos clínicos.</p>
+            </li>
+            <li class="tl-item">
+              <span class="tl-item__year">2023</span>
+              <h3 class="tl-item__title">Manual Cochrane</h3>
+              <p class="tl-item__text">Higgins et al. recomiendan que <strong>al menos dos personas</strong> participen de forma independiente en la selección y extracción para minimizar equivocaciones.</p>
+            </li>
+          </ol>
+
+          <div class="callout callout--insight stagger">
+            <span class="callout__tag">Implicación para el proyecto</span>
+            <p>El rigor exige redundancia humana → <strong>tiempo y especialistas caros</strong>. Esa tensión (calidad vs. costo) es exactamente el hueco que busca automatizar un flujo gobernado por POE, <em>sin sacrificar verificabilidad</em>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 6 · ANTECEDENTES II ============ -->
+      <section class="slide" data-section="Introducción / Antecedentes" data-title="Antecedentes · Automatización y referente técnico" data-theme="light" aria-label="Diapositiva 6: Antecedentes II">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">04 · Antecedentes (2/2)</p>
+            <h2 class="slide__title">IA para síntesis de literatura: avances prometedores… con riesgos abiertos</h2>
+          </header>
+
+          <div class="grid grid--3 stagger">
+            <article class="card">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-cpu"/></svg></span>
+              <h3 class="card__title">Automatización de revisiones</h3>
+              <p class="card__text">Marshall y Wallace (2019) sintetizan el uso de aprendizaje automático para automatizar etapas de revisiones sistemáticas.</p>
+            </article>
+            <article class="card">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-db"/></svg></span>
+              <h3 class="card__title">Corpus EBM-NLP</h3>
+              <p class="card__text">Nye et al. (2018) crean un conjunto de resúmenes anotados con pacientes, intervenciones y desenlaces para entrenar modelos de extracción.</p>
+            </article>
+            <article class="card">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>
+              <h3 class="card__title">GPT-4 en cribado y extracción</h3>
+              <p class="card__text">Khraisha et al. (2024): los LLM aportan valor, pero <strong>presentan riesgos que impiden sustituir la supervisión humana</strong>.</p>
+            </article>
+            <article class="card card--ok">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-link"/></svg></span>
+              <h3 class="card__title">RAG: generar anclado en la evidencia</h3>
+              <p class="card__text">Lewis et al. (2020) y Gao et al. (2023): buscar los párrafos reales <em>antes</em> de redactar, técnica base del Knowledge Core.</p>
+            </article>
+            <article class="card card--danger">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-alert"/></svg></span>
+              <h3 class="card__title">Alucinación documentada</h3>
+              <p class="card__text">Ji et al. (2023): la IA fabrica datos inexistentes — un riesgo <strong>inaceptable en entornos clínicos o regulatorios</strong>.</p>
+            </article>
+            <article class="card card--info">
+              <span class="card__icon" aria-hidden="true"><svg class="icon"><use href="#i-layers"/></svg></span>
+              <h3 class="card__title">Referente técnico: EPAH (2026)</h3>
+              <p class="card__text"><strong>6 módulos y 44 agentes</strong> con cinco principios: RAG primero, trazabilidad obligatoria, revisión humana, modularidad y evolución incremental.</p>
+              <p class="card__ref">Se inicia con el módulo AI Evidence Review (POE-01)</p>
+            </article>
+          </div>
+
+          <div class="synthesis stagger">
+            <div class="synthesis__col synthesis__col--ok">
+              <h3><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Lo que se sabe</h3>
+              <ul>
+                <li>La doble revisión humana reduce drásticamente los errores de extracción.</li>
+                <li>Los LLM apoyan la estructuración de literatura científica.</li>
+                <li>La técnica RAG ancla las respuestas en fragmentos reales.</li>
+              </ul>
+            </div>
+            <div class="synthesis__col synthesis__col--gap">
+              <h3><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg> Lo que falta</h3>
+              <ul>
+                <li>Evidencia empírica y reproducible de un flujo multiagente gobernado por <strong>POE</strong> con referencia verificable por campo, validador independiente y revisión humana auditada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 7 · JUSTIFICACIÓN ============ -->
+      <section class="slide" data-section="Justificación" data-title="Justificación, impactos y viabilidad" data-theme="light" aria-label="Diapositiva 7: Justificación">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">05 · Justificación</p>
+            <h2 class="slide__title">¿Por qué vale la pena este estudio?</h2>
+            <p class="slide__lead">Evaluar empíricamente el MVP antes de escalarlo a los demás módulos económicos y regulatorios cumple el criterio de <strong>evolución incremental</strong> de la Especificación.</p>
+          </header>
+
+          <div class="grid grid--4 stagger">
+            <article class="apport">
+              <span class="apport__icon" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></span>
+              <h3 class="apport__title">Aporte científico</h3>
+              <p class="apport__text">Evidencia experimental y reproducible del rendimiento real de un sistema multiagente con trazabilidad obligatoria en literatura biomédica.</p>
+            </article>
+            <article class="apport">
+              <span class="apport__icon" aria-hidden="true"><svg class="icon"><use href="#i-flask"/></svg></span>
+              <h3 class="apport__title">Aporte metodológico</h3>
+              <p class="apport__text">Protocolo replicable: doble anotación humana, comparación contra línea base, repeticiones controladas e inyección de errores sintéticos.</p>
+            </article>
+            <article class="apport">
+              <span class="apport__icon" aria-hidden="true"><svg class="icon"><use href="#i-cpu"/></svg></span>
+              <h3 class="apport__title">Aporte tecnológico</h3>
+              <p class="apport__text">Arquitectura modular con contratos tipificados, orquestación de estados y registro de auditoría reutilizable en sistemas críticos.</p>
+            </article>
+            <article class="apport">
+              <span class="apport__icon" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>
+              <h3 class="apport__title">Aporte práctico</h3>
+              <p class="apport__text">Criterios objetivos: qué resultados automatizados pueden aprobarse rápido y cuáles exigen obligatoriamente revisión de un especialista.</p>
+            </article>
+          </div>
+
+          <div class="split stagger">
+            <div class="split__col">
+              <h3 class="mini-title">Impactos</h3>
+              <ul class="impact-list">
+                <li><span class="impact-dot impact-dot--social"></span><strong>Social:</strong> decisiones oportunas en salud pública, evitando el sesgo de automatización con revisión humana obligatoria.</li>
+                <li><span class="impact-dot impact-dot--tech"></span><strong>Tecnológico:</strong> arquitectura Python reutilizable; LLMGateway abstrae a proveedores externos.</li>
+                <li><span class="impact-dot impact-dot--ethics"></span><strong>Ético:</strong> IA transparente y trazable; solo artículos de acceso abierto y sin datos de pacientes.</li>
+                <li><span class="impact-dot impact-dot--eco"></span><strong>Económico:</strong> menos horas de trabajo manual repetitivo; presupuesto tope y caché de embeddings.</li>
+                <li><span class="impact-dot impact-dot--env"></span><strong>Ambiental:</strong> fragmentos acotados (RAG) en lugar de documentos completos; 180 corridas exactas.</li>
+              </ul>
+            </div>
+            <div class="split__col">
+              <h3 class="mini-title">Viabilidad</h3>
+              <div class="viable">
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><strong>16 semanas</strong> con hitos M1–M7</span>
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-db"/></svg><strong>35 PDF</strong> de acceso abierto</span>
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><strong>4 estudiantes</strong> + docente</span>
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-cpu"/></svg>Stack <strong>open source</strong> ($0 MXN)</span>
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><strong>Sin GPU</strong>: consumo vía API</span>
+                <span class="viable__item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Presupuesto <strong>acordado</strong> con el asesor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 8 · OBJETIVOS ============ -->
+      <section class="slide" data-section="Objetivos" data-title="Objetivos de la investigación" data-theme="light" aria-label="Diapositiva 8: Objetivos">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">06 · Objetivos</p>
+            <h2 class="slide__title">¿Qué queremos lograr?</h2>
+          </header>
+
+          <div class="obj-general stagger">
+            <span class="obj-general__tag">Objetivo general</span>
+            <p>Evaluar el desempeño del flujo multiagente del MVP de <strong>AI Evidence Review</strong> (bajo <span class="mono">POE-01</span>) en términos de <strong>exactitud de extracción</strong>, <strong>validez de la trazabilidad</strong> y <strong>capacidad de detección de errores</strong>, frente a una referencia humana doble anotada y a una línea base sin recuperación segmentada ni validación cruzada.</p>
+          </div>
+
+          <div class="grid grid--4 stagger">
+            <article class="obj-card">
+              <header class="obj-card__head"><span class="obj-card__id">OE1</span><span class="pill pill--mini">Instrumental</span></header>
+              <h3 class="obj-card__title">Construir el patrón de referencia</h3>
+              <p class="obj-card__text">Golden Set de <strong>30 artículos</strong> con extracción humana doble independiente de PICO, endpoints y diseño, adjudicada por consenso experto y con su nivel de concordancia (Kappa).</p>
+            </article>
+            <article class="obj-card">
+              <header class="obj-card__head"><span class="obj-card__id">OE2</span><span class="pill pill--mini">Instrumental</span></header>
+              <h3 class="obj-card__title">Congelar la configuración</h3>
+              <p class="obj-card__text">Determinar lector de PDF, estrategia de fragmentación, motor de búsqueda, modelo de lenguaje y versiones de instrucciones mediante la prueba piloto de calibración (Piloto B).</p>
+            </article>
+            <article class="obj-card">
+              <header class="obj-card__head"><span class="obj-card__id">OE3</span><span class="pill pill--mini pill--accent">Analítico</span></header>
+              <h3 class="obj-card__title">Comparar C1 vs C0</h3>
+              <p class="obj-card__text">Comparar estadísticamente la exactitud por campo y por artículo, y estimar la <strong>cobertura y soporte real</strong> de las referencias de trazabilidad.</p>
+            </article>
+            <article class="obj-card">
+              <header class="obj-card__head"><span class="obj-card__id">OE4</span><span class="pill pill--mini pill--accent">Analítico</span></header>
+              <h3 class="obj-card__title">Medir al validador</h3>
+              <p class="obj-card__text">Estimar la sensibilidad de ER-10 ante errores deliberados y caracterizar los errores naturales persistentes para definir reglas claras de <strong>Human-in-the-Loop</strong>.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 9 · HIPÓTESIS Y SUPUESTOS ============ -->
+      <section class="slide" data-section="Hipótesis / Supuestos" data-title="Hipótesis y supuestos" data-theme="light" aria-label="Diapositiva 9: Hipótesis y supuestos">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">07 · Hipótesis / Supuestos</p>
+            <h2 class="slide__title">Tres hipótesis contrastables… y tres supuestos operativos</h2>
+            <p class="slide__lead">Enfoque cuantitativo experimental: se comparan dos configuraciones (C0 y C1) sobre los mismos 30 artículos → mediciones emparejadas verificables.</p>
+          </header>
+
+          <div class="grid grid--3 stagger">
+            <article class="hyp hyp--h1">
+              <header class="hyp__head"><span class="hyp__id">H1</span><span class="hyp__name">Exactitud de extracción</span></header>
+              <p class="hyp__text">La exactitud promedio (calificación <strong>F1</strong>) del flujo propuesto con recuperación y validación <strong>(C1) será significativamente mayor</strong> que la de la línea base sin controles (C0).</p>
+              <p class="hyp__null"><span>H₀</span> La mediana de las diferencias (C1 − C0) es ≤ 0: no existe mejora.</p>
+              <p class="hyp__test">Wilcoxon con signo · p &lt; 0.05</p>
+            </article>
+
+            <article class="hyp hyp--h2">
+              <header class="hyp__head"><span class="hyp__id">H2</span><span class="hyp__name">Cobertura de trazabilidad</span></header>
+              <p class="hyp__text">En C1, el <strong>100 % de los campos críticos no vacíos</strong> contendrán una <strong>EvidenceReference válida</strong> hacia su documento y fragmento original (medido antes del filtro ER-09).</p>
+              <p class="hyp__null"><span>H₀</span> Al menos un campo carece de referencia válida (un solo incumplimiento basta para rechazarla).</p>
+              <p class="hyp__test">Criterio estricto · 90 matrices verificadas</p>
+            </article>
+
+            <article class="hyp hyp--h3">
+              <header class="hyp__head"><span class="hyp__id">H3</span><span class="hyp__name">Sensibilidad del validador</span></header>
+              <p class="hyp__text">El agente validador independiente <strong>ER-10</strong> detectará al menos la proporción umbral <strong>u = 0,80 (80 %)</strong> de los errores introducidos deliberadamente.</p>
+              <p class="hyp__null"><span>H₀</span> La sensibilidad de detección es inferior al umbral u establecido.</p>
+              <p class="hyp__test">Binomial exacta · u se calibra en el Piloto B</p>
+            </article>
+          </div>
+
+          <div class="assumptions stagger">
+            <h3 class="mini-title">Supuestos operativos</h3>
+            <ol class="assumptions__list">
+              <li><strong>Registro auditado:</strong> el proveedor de IA permite registrar el identificador exacto del modelo y sus parámetros en cada ejecución.</li>
+              <li><strong>Datos disponibles:</strong> existen al menos 35 artículos de acceso abierto con licencias compatibles en el área terapéutica acordada.</li>
+              <li><strong>Acceso estable:</strong> el equipo cuenta con acceso estable a la API durante las semanas de experimentación.</li>
+            </ol>
+            <p class="note note--inline"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Los umbrales numéricos pendientes de calibración (u, F1 mínimo) se fijan al cierre del <strong>Piloto B</strong> (decisión D5, Semana 10).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 10 · METODOLOGÍA I ============ -->
+      <section class="slide" data-section="Metodología" data-title="Metodología · Sistema y flujo POE-01" data-theme="light" aria-label="Diapositiva 10: Metodología I">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">08 · Metodología (1/3)</p>
+            <h2 class="slide__title">El sistema evaluado: flujo de 5 pasos del módulo POE-01</h2>
+            <p class="slide__lead">Cada corrida registra automáticamente versiones de software, modelo de lenguaje, temperatura y prompts (política de auditoría §18).</p>
+          </header>
+
+          <ol class="pipeline stagger">
+            <li class="pipeline__step">
+              <span class="pipeline__num">1</span>
+              <div class="pipeline__body">
+                <h3 class="pipeline__title">Ingesta e indexación</h3>
+                <p class="pipeline__text"><strong>Knowledge Core:</strong> DocumentService, DocumentParser y ChunkingService leen el PDF, conservan páginas/secciones, lo fragmentan e indexan (PostgreSQL + RetrievalService).</p>
+              </div>
+            </li>
+            <li class="pipeline__step">
+              <span class="pipeline__num">2</span>
+              <div class="pipeline__body">
+                <h3 class="pipeline__title">Extracción especializada en paralelo</h3>
+                <p class="pipeline__text"><span class="mono">ER-04</span> extrae PICO · <span class="mono">ER-05</span> extrae endpoints, timepoints y cifras · <span class="mono">ER-06</span> clasifica diseño, cegamiento y tamaño de muestra.</p>
+              </div>
+            </li>
+            <li class="pipeline__step">
+              <span class="pipeline__num">3</span>
+              <div class="pipeline__body">
+                <h3 class="pipeline__title">Consolidación y matriz versionada</h3>
+                <p class="pipeline__text"><span class="mono">ER-08</span> reúne las extracciones en una tabla uniforme donde cada celda conserva su valor original y su referencia documental.</p>
+              </div>
+            </li>
+            <li class="pipeline__step">
+              <span class="pipeline__num">4</span>
+              <div class="pipeline__body">
+                <h3 class="pipeline__title">Trazabilidad + validación cruzada</h3>
+                <p class="pipeline__text"><span class="mono">ER-09</span> verifica que cada enlace documental exista y se abra; <span class="mono">ER-10</span> re-verifica los campos críticos contra los párrafos originales.</p>
+              </div>
+            </li>
+            <li class="pipeline__step">
+              <span class="pipeline__num">5</span>
+              <div class="pipeline__body">
+                <h3 class="pipeline__title">Revisión humana y exportación</h3>
+                <p class="pipeline__text">Borrador para aprobación o corrección auditada (<span class="mono">HumanReviewService</span>) y exportación a CSV/XLSX (<span class="mono">ExportService</span>).</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="split split--tight stagger">
+            <div class="callout callout--eval">
+              <span class="callout__tag">Modo de evaluación experimental</span>
+              <p>Durante las corridas C0 y C1 la <strong>auto-corrección y re-extracción se mantienen desactivadas</strong> → se mide el error puro y la capacidad real de ER-09/ER-10. <span class="mono">ER-07</span> se sustituye por una regla fija de inclusión y todo se ejecuta por <strong>API</strong> (sin interfaz gráfica).</p>
+            </div>
+            <div class="stack-box">
+              <h3 class="mini-title">Stack técnico</h3>
+              <div class="chips">
+                <span class="chip chip--mono">Python 3.12+</span>
+                <span class="chip chip--mono">LangGraph</span>
+                <span class="chip chip--mono">FastAPI</span>
+                <span class="chip chip--mono">Pydantic</span>
+                <span class="chip chip--mono">PostgreSQL</span>
+                <span class="chip chip--mono">pytest</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 11 · METODOLOGÍA II ============ -->
+      <section class="slide" data-section="Metodología" data-title="Metodología · Muestra e instrumentos" data-theme="light" aria-label="Diapositiva 11: Metodología II">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">08 · Metodología (2/3)</p>
+            <h2 class="slide__title">Universo, muestra e instrumentos de recolección</h2>
+          </header>
+
+          <div class="grid grid--2 stagger">
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-db"/></svg> Muestra: 35 artículos de acceso abierto</h3>
+              <div class="sample">
+                <div class="sample__bar" role="img" aria-label="30 artículos de evaluación y 5 artículos piloto">
+                  <span class="sample__seg sample__seg--eval" style="flex:30">30 evaluación</span>
+                  <span class="sample__seg sample__seg--pilot" style="flex:5">5 piloto</span>
+                </div>
+                <ul class="sample__strata">
+                  <li><strong>10</strong> ECA (ensayos aleatorizados)</li>
+                  <li><strong>10</strong> estudios de cohorte</li>
+                  <li><strong>10</strong> estudios de un solo brazo</li>
+                </ul>
+                <p class="note note--inline">Muestreo no probabilístico por criterio con estratificación deliberada: <strong>comparación controlada</strong>, no generalización poblacional. Los 5 piloto se excluyen de la evaluación final.</p>
+              </div>
+              <div class="criteria">
+                <div class="criteria__col criteria__col--in">
+                  <h4>Inclusión</h4>
+                  <ul>
+                    <li>PDF nativo con capa de texto digital</li>
+                    <li>Licencia abierta (Creative Commons)</li>
+                    <li>≥ 1 desenlace clínico primario</li>
+                    <li>Idioma inglés</li>
+                  </ul>
+                </div>
+                <div class="criteria__col criteria__col--out">
+                  <h4>Exclusión</h4>
+                  <ul>
+                    <li>Escaneados que requieran OCR</li>
+                    <li>Retractados o con erratas</li>
+                    <li>Protocolos sin resultados</li>
+                    <li>Datos personales de pacientes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-library"/></svg> Instrumentos</h3>
+              <ul class="inst-list">
+                <li><strong>Codebook v1.0 + anotación doble:</strong> valor de campos críticos, ubicación y <span class="mono">not_found</span> (PE1, OE1).</li>
+                <li><strong>Rúbrica de equivalencia a ciegas:</strong> Correcto (1.0) · Parcial (0.5) · Incorrecto (0) · No encontrado (0) (PE1, PE2, OE3).</li>
+                <li><strong>Registros automáticos:</strong> ID de corrida, modelo, prompt, tokens, tiempo y fallos en PostgreSQL (OE2, OE3).</li>
+                <li><strong>Taxonomía de errores naturales:</strong> clasificación cualitativa de fallas reales (PE3, OE4).</li>
+                <li><strong>Fixtures de error:</strong> inyección controlada E1–E4 sobre copias de las matrices (PE3, OE4).</li>
+              </ul>
+
+              <div class="pilots">
+                <article class="pilot">
+                  <header><span class="pilot__tag">Piloto A</span><span class="pilot__when">Semanas 4–5</span></header>
+                  <p>Calibración de instrumentos humanos: doble anotación de 5 artículos, cálculo de <strong>Kappa</strong> inicial y ajuste del Codebook.</p>
+                </article>
+                <article class="pilot">
+                  <header><span class="pilot__tag pilot__tag--b">Piloto B</span><span class="pilot__when">Semanas 9–10</span></header>
+                  <p>Calibración técnica y financiera: esquemas (CV2), rúbrica a ciegas, umbral <strong>u</strong>, gasto de API y <strong>congelamiento</strong> de la configuración.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 12 · METODOLOGÍA III ============ -->
+      <section class="slide" data-section="Metodología" data-title="Metodología · Procedimiento y análisis" data-theme="light" aria-label="Diapositiva 12: Metodología III">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">08 · Metodología (3/3)</p>
+            <h2 class="slide__title">Procedimiento, métricas y análisis</h2>
+            <p class="slide__lead">Once pasos secuenciales auditables: de la auditoría del entorno (S1) al repositorio etiquetado <span class="mono">v1.0-final</span> (S16).</p>
+          </header>
+
+          <div class="stats stagger">
+            <div class="stat"><span class="stat__num" data-count="180">180</span><span class="stat__label">corridas evaluativas<br><small>30 PDF × 2 cond. × 3 rep.</small></span></div>
+            <div class="stat"><span class="stat__num" data-count="120">120</span><span class="stat__label">errores inyectados<br><small>4 tipos × 30 artículos</small></span></div>
+            <div class="stat"><span class="stat__num" data-count="8">8</span><span class="stat__label">criterios CV1–CV8<br><small>verificación técnica del MVP</small></span></div>
+            <div class="stat"><span class="stat__num" data-count="7">7</span><span class="stat__label">hitos M1–M7<br><small>cronograma de 16 semanas</small></span></div>
+          </div>
+
+          <div class="grid grid--2 stagger">
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg> Inyección controlada de errores</h3>
+              <div class="err-grid">
+                <div class="err"><span class="err__id">E1</span><p><strong>Valor alterado</strong> — cifra numérica o categórica cambiada (muestra, eficacia).</p></div>
+                <div class="err"><span class="err__id">E2</span><p><strong>Timepoint / unidad</strong> — “12 semanas” → “24 semanas”, “mg/dL” → “mmol/L”.</p></div>
+                <div class="err"><span class="err__id">E3</span><p><strong>Referencia rota</strong> — <span class="mono">chunk_id</span> apunta a un fragmento inexistente.</p></div>
+                <div class="err"><span class="err__id">E4</span><p><strong>Referencia que no sustenta</strong> — cita real, pero de otro tema.</p></div>
+              </div>
+              <p class="note note--inline">Además se ejecuta ER-10 sobre las 30 matrices originales para medir su tasa de <strong>falsos positivos</strong>.</p>
+            </div>
+
+            <div class="panel">
+              <h3 class="panel__title"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg> Plan de análisis estadístico</h3>
+              <ul class="metrics">
+                <li><span class="metrics__k">Concordancia inter-anotador</span><span class="metrics__v">Kappa de Cohen ≥ 0,70 (Landis &amp; Koch)</span></li>
+                <li><span class="metrics__k">Exactitud de extracción</span><span class="metrics__v">Wilcoxon emparejado C1 vs C0 · p &lt; 0,05</span></li>
+                <li><span class="metrics__k">Cobertura de trazabilidad</span><span class="metrics__v">Conteo directo · 100 % confirma H2</span></li>
+                <li><span class="metrics__k">Sensibilidad del validador</span><span class="metrics__v">Binomial exacta unilateral · ≥ u</span></li>
+                <li><span class="metrics__k">Intervalos de confianza</span><span class="metrics__v">Remuestreo bootstrap</span></li>
+              </ul>
+              <p class="note note--inline">Salidas de C0/C1 <strong>enmascaradas</strong> y evaluadas a ciegas; el Golden Set se congela (M3) <em>antes</em> de ejecutar el sistema (M5).</p>
+            </div>
+          </div>
+
+          <div class="milestones stagger" aria-label="Hitos del cronograma">
+            <span class="ms" title="Entorno auditado · Semana 2"><b>M1</b>S2</span>
+            <span class="ms" title="Codebook validado · Semana 5"><b>M2</b>S5</span>
+            <span class="ms" title="Referencia congelada · Semana 8"><b>M3</b>S8</span>
+            <span class="ms" title="Flujo técnico listo · Semana 10"><b>M4</b>S10</span>
+            <span class="ms" title="Corridas completas · Semana 12"><b>M5</b>S12</span>
+            <span class="ms" title="Análisis estadístico · Semana 14"><b>M6</b>S14</span>
+            <span class="ms ms--last" title="Defensa del proyecto · Semana 16"><b>M7</b>S16</span>
+          </div>
+
+          <div class="ethics stagger">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+            <p><strong>Ética y seguridad:</strong> exclusivamente artículos de acceso abierto · API keys en variables de entorno (nunca en prompts ni repositorio) · aislamiento por identificador de proyecto · <strong>toda salida es un borrador sujeto a revisión humana</strong> (CV8).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 13 · BIBLIOGRAFÍA ============ -->
+      <section class="slide" data-section="Bibliografía" data-title="Bibliografía" data-theme="light" aria-label="Diapositiva 13: Bibliografía">
+        <div class="slide__inner">
+          <header class="slide__head stagger">
+            <p class="kicker">09 · Bibliografía</p>
+            <h2 class="slide__title">Referencias principales</h2>
+            <p class="slide__lead">Formato APA 7.ª edición · selección de las fuentes centrales del protocolo.</p>
+          </header>
+
+          <ol class="refs stagger">
+            <li>Buscemi, N., Hartling, L., Vandermeer, B., Tjosvold, L., &amp; Klassen, T. P. (2006). Single data extraction generated more errors than double data extraction in systematic reviews. <em>Journal of Clinical Epidemiology, 59</em>(7), 697–703. <a href="https://doi.org/10.1016/j.jclinepi.2005.11.010" target="_blank" rel="noopener">doi.org/10.1016/j.jclinepi.2005.11.010</a></li>
+            <li>Cohen, J. (1960). A coefficient of agreement for nominal scales. <em>Educational and Psychological Measurement, 20</em>(1), 37–46. <a href="https://doi.org/10.1177/001316446002000104" target="_blank" rel="noopener">doi.org/10.1177/001316446002000104</a></li>
+            <li>Efron, B., &amp; Tibshirani, R. J. (1993). <em>An introduction to the bootstrap</em>. Chapman &amp; Hall.</li>
+            <li>Electronic Code of Federal Regulations. (s. f.). <em>Title 21, Part 11: Electronic records; electronic signatures</em>. <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" target="_blank" rel="noopener">ecfr.gov</a></li>
+            <li>Equipo del proyecto AI Pharma/HEOR. (2026). <em>AI Pharma/HEOR Intelligence Platform: Especificación funcional y arquitectura de agentes</em> (Versión 0.1) [Documento de trabajo no publicado].</li>
+            <li>Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., … Wang, H. (2023). Retrieval-augmented generation for large language models: A survey. <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2312.10997" target="_blank" rel="noopener">doi.org/10.48550/arXiv.2312.10997</a></li>
+            <li>Hevner, A. R., March, S. T., Park, J., &amp; Ram, S. (2004). Design science in information systems research. <em>MIS Quarterly, 28</em>(1), 75–105. <a href="https://doi.org/10.2307/25148625" target="_blank" rel="noopener">doi.org/10.2307/25148625</a></li>
+            <li>Higgins, J. P. T., Thomas, J., Chandler, J., Cumpston, M., Li, T., Page, M. J., &amp; Welch, V. A. (Eds.). (2023). <em>Cochrane handbook for systematic reviews of interventions</em> (Version 6.4). Cochrane. <a href="https://training.cochrane.org/handbook" target="_blank" rel="noopener">training.cochrane.org/handbook</a></li>
+            <li>Husereau, D., Drummond, M., Augustovski, F., de Bekker-Grob, E., Briggs, A. H., Carswell, C., … Staniszewska, S. (2022). CHEERS 2022 statement. <em>BMJ, 376</em>, e067975. <a href="https://doi.org/10.1136/bmj-2021-067975" target="_blank" rel="noopener">doi.org/10.1136/bmj-2021-067975</a></li>
+            <li>Ji, Z., Lee, N., Frieske, R., Yu, T., Su, D., Xu, Y., … Fung, P. (2023). Survey of hallucination in natural language generation. <em>ACM Computing Surveys, 55</em>(12), Article 248. <a href="https://doi.org/10.1145/3571730" target="_blank" rel="noopener">doi.org/10.1145/3571730</a></li>
+            <li>Khraisha, Q., Put, S., Kappenberg, J., Warraitch, A., &amp; Hadfield, K. (2024). Can large language models replace humans in systematic reviews? <em>Research Synthesis Methods, 15</em>(4), 616–626. <a href="https://doi.org/10.1002/jrsm.1715" target="_blank" rel="noopener">doi.org/10.1002/jrsm.1715</a></li>
+            <li>Landis, J. R., &amp; Koch, G. G. (1977). The measurement of observer agreement for categorical data. <em>Biometrics, 33</em>(1), 159–174. <a href="https://doi.org/10.2307/2529310" target="_blank" rel="noopener">doi.org/10.2307/2529310</a></li>
+            <li>LangChain. (s. f.). <em>LangGraph documentation</em>. <a href="https://langchain-ai.github.io/langgraph/" target="_blank" rel="noopener">langchain-ai.github.io/langgraph</a></li>
+            <li>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in NeurIPS, 33</em>, 9459–9474.</li>
+            <li>Marshall, I. J., &amp; Wallace, B. C. (2019). Toward systematic review automation. <em>Systematic Reviews, 8</em>, Article 163. <a href="https://doi.org/10.1186/s13643-019-1074-9" target="_blank" rel="noopener">doi.org/10.1186/s13643-019-1074-9</a></li>
+            <li>Nye, B., Li, J. J., Patel, A., Yang, Y., Marshall, I. J., Nenkova, A., &amp; Wallace, B. C. (2018). A corpus with multi-level annotations… (EBM-NLP). <em>Proceedings of ACL, 56</em>, 197–207. <a href="https://doi.org/10.18653/v1/P18-1019" target="_blank" rel="noopener">doi.org/10.18653/v1/P18-1019</a></li>
+            <li>Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., … Moher, D. (2021). The PRISMA 2020 statement. <em>BMJ, 372</em>, Article n71. <a href="https://doi.org/10.1136/bmj.n71" target="_blank" rel="noopener">doi.org/10.1136/bmj.n71</a></li>
+            <li>Peffers, K., Tuunanen, T., Rothenberger, M. A., &amp; Chatterjee, S. (2007). A design science research methodology for information systems research. <em>JMIS, 24</em>(3), 45–77. <a href="https://doi.org/10.2753/MIS0742-1222240302" target="_blank" rel="noopener">doi.org/10.2753/MIS0742-1222240302</a></li>
+            <li>Richardson, W. S., Wilson, M. C., Nishikawa, J., &amp; Hayward, R. S. (1995). The well-built clinical question. <em>ACP Journal Club, 123</em>(3), A12–A13.</li>
+            <li>Wilcoxon, F. (1945). Individual comparisons by ranking methods. <em>Biometrics Bulletin, 1</em>(6), 80–83. <a href="https://doi.org/10.2307/3001968" target="_blank" rel="noopener">doi.org/10.2307/3001968</a></li>
+          </ol>
+
+          <p class="refs-note stagger">Protocolo completo (v1.0, noviembre 2026) con Anexos A–E: matriz de congruencia · esquema de extracción · trazabilidad con la Especificación · Codebook y rúbrica · declaración de uso de IA generativa.</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== Barra de navegación inferior ===== -->
+    <footer class="navbar">
+      <button class="nav-btn" id="btn-prev" type="button" aria-label="Diapositiva anterior">
+        <svg class="icon" aria-hidden="true"><use href="#i-chev-l"/></svg>
+        <span class="nav-btn__text">Anterior</span>
+      </button>
+
+      <div class="navbar__center">
+        <span class="counter" id="counter" aria-live="off">1 / 13</span>
+        <div class="dots" id="dots" role="tablist" aria-label="Ir a una diapositiva"></div>
+      </div>
+
+      <button class="nav-btn nav-btn--next" id="btn-next" type="button" aria-label="Diapositiva siguiente">
+        <span class="nav-btn__text">Siguiente</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-chev-r"/></svg>
+      </button>
+    </footer>
+
+    <!-- ===== Menú lateral (índice según la estructura del proyecto) ===== -->
+    <div class="backdrop" id="backdrop" hidden></div>
+    <nav class="menu" id="menu" aria-label="Índice de la presentación" hidden>
+      <div class="menu__head">
+        <h2 class="menu__title">Índice <span class="menu__hint">Presentación 20–30 min</span></h2>
+        <button class="icon-btn" id="btn-menu-close" type="button" aria-label="Cerrar índice">
+          <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </div>
+      <ol class="menu__list">
+        <li><button type="button" class="menu__item" data-section="Portada"><span class="menu__num">1</span><span class="menu__label">Portada</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Planteamiento del problema"><span class="menu__num">2</span><span class="menu__label">Planteamiento del problema</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Tipo de investigación"><span class="menu__num">3</span><span class="menu__label">Tipo de investigación</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Introducción / Antecedentes"><span class="menu__num">4</span><span class="menu__label">Introducción / Antecedentes</span><span class="menu__count">3</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Justificación"><span class="menu__num">5</span><span class="menu__label">Justificación</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Objetivos"><span class="menu__num">6</span><span class="menu__label">Objetivos</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Hipótesis / Supuestos"><span class="menu__num">7</span><span class="menu__label">Hipótesis / Supuestos</span><span class="menu__count">1</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Metodología"><span class="menu__num">8</span><span class="menu__label">Metodología</span><span class="menu__count">3</span></button></li>
+        <li><button type="button" class="menu__item" data-section="Bibliografía"><span class="menu__num">9</span><span class="menu__label">Bibliografía</span><span class="menu__count">1</span></button></li>
+      </ol>
+      <div class="menu__help">
+        <p><kbd>←</kbd><kbd>→</kbd> navegar · <kbd>O</kbd> vista general · <kbd>F</kbd> pantalla completa · desliza en móvil</p>
+      </div>
+    </nav>
+
+    <!-- ===== Vista general (grid de diapositivas) ===== -->
+    <div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="Vista general de diapositivas" hidden>
+      <div class="overview__head">
+        <h2 class="overview__title">Vista general</h2>
+        <button class="icon-btn" id="btn-overview-close" type="button" aria-label="Cerrar vista general">
+          <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </div>
+      <div class="overview__grid" id="overview-grid"></div>
+    </div>
+
+    <!-- ===== Pista de uso (una sola vez) ===== -->
+    <div class="hint" id="hint" role="status" aria-live="polite"></div>
+
+    <noscript>
+      <style>
+        .slide { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; overflow: visible !important; border-bottom: 1px solid #dbe5f0; }
+        .slides { position: static !important; overflow: visible !important; height: auto !important; }
+        .topbar__actions, #btn-menu, .navbar, .progress, .hint { display: none !important; }
+        .deck { height: auto !important; display: block !important; }
+        body { overflow: auto !important; }
+        .stagger > * { animation: none !important; opacity: 1 !important; }
+      </style>
+    </noscript>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
