@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Matriz 2</title>
+<style>
+ body{margin:0;background:#222;font-family:sans-serif;display:flex;flex-wrap:wrap;gap:16px;padding:16px}
+ .cell{position:relative}
+ .lbl{position:absolute;top:-14px;left:2px;color:#9fd;font-size:10px;z-index:2}
+ iframe{border:2px solid #000;background:#fff;display:block}
+</style></head><body>
+<div class="cell"><span class="lbl">280·16</span><iframe src="index.html" data-w="280" data-fs="16" width="280" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">280·18</span><iframe src="index.html" data-w="280" data-fs="18" width="280" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">280·20</span><iframe src="index.html" data-w="280" data-fs="20" width="280" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">280·22</span><iframe src="index.html" data-w="280" data-fs="22" width="280" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">300·16</span><iframe src="index.html" data-w="300" data-fs="16" width="300" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">300·18</span><iframe src="index.html" data-w="300" data-fs="18" width="300" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">300·20</span><iframe src="index.html" data-w="300" data-fs="20" width="300" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">300·22</span><iframe src="index.html" data-w="300" data-fs="22" width="300" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320·16</span><iframe src="index.html" data-w="320" data-fs="16" width="320" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320·18</span><iframe src="index.html" data-w="320" data-fs="18" width="320" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320·20</span><iframe src="index.html" data-w="320" data-fs="20" width="320" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320·22</span><iframe src="index.html" data-w="320" data-fs="22" width="320" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360·16</span><iframe src="index.html" data-w="360" data-fs="16" width="360" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360·18</span><iframe src="index.html" data-w="360" data-fs="18" width="360" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360·20</span><iframe src="index.html" data-w="360" data-fs="20" width="360" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360·22</span><iframe src="index.html" data-w="360" data-fs="22" width="360" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">390·16</span><iframe src="index.html" data-w="390" data-fs="16" width="390" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">390·18</span><iframe src="index.html" data-w="390" data-fs="18" width="390" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">390·20</span><iframe src="index.html" data-w="390" data-fs="20" width="390" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">390·22</span><iframe src="index.html" data-w="390" data-fs="22" width="390" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412·16</span><iframe src="index.html" data-w="412" data-fs="16" width="412" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412·18</span><iframe src="index.html" data-w="412" data-fs="18" width="412" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412·20</span><iframe src="index.html" data-w="412" data-fs="20" width="412" height="600" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412·22</span><iframe src="index.html" data-w="412" data-fs="22" width="412" height="600" title="t"></iframe></div>
+<script>
+ document.querySelectorAll('iframe').forEach(fr => {
+   fr.addEventListener('load', () => {
+     try {
+       const d = fr.contentDocument;
+       d.documentElement.style.fontSize = fr.dataset.fs + 'px';
+       // variante B: bloquear fuentes Google forzando fallback del sistema
+       if (fr.dataset.fs === '22') {
+         const st = d.createElement('style');
+         st.textContent = '* { font-family: system-ui, sans-serif !important; } .mono { font-family: ui-monospace, monospace !important; }';
+         d.head.appendChild(st);
+       }
+     } catch(e) {}
+   });
+ });
+</script>
+</body></html>

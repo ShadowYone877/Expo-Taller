@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Matriz</title>
+<style>
+ body{margin:0;background:#222;font-family:sans-serif;display:flex;flex-wrap:wrap;gap:18px;padding:18px}
+ .cell{position:relative}
+ .lbl{position:absolute;top:-15px;left:2px;color:#9fd;font-size:11px;z-index:2}
+ iframe{border:2px solid #000;background:#fff;display:block}
+</style></head><body>
+<div class="cell"><span class="lbl">320px / root 16px</span><iframe src="index.html" data-w="320" data-fs="16" width="320" height="620" style="font-size:16px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320px / root 18px</span><iframe src="index.html" data-w="320" data-fs="18" width="320" height="620" style="font-size:18px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">320px / root 20px</span><iframe src="index.html" data-w="320" data-fs="20" width="320" height="620" style="font-size:20px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360px / root 16px</span><iframe src="index.html" data-w="360" data-fs="16" width="360" height="620" style="font-size:16px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360px / root 18px</span><iframe src="index.html" data-w="360" data-fs="18" width="360" height="620" style="font-size:18px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">360px / root 20px</span><iframe src="index.html" data-w="360" data-fs="20" width="360" height="620" style="font-size:20px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412px / root 16px</span><iframe src="index.html" data-w="412" data-fs="16" width="412" height="620" style="font-size:16px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412px / root 18px</span><iframe src="index.html" data-w="412" data-fs="18" width="412" height="620" style="font-size:18px" title="t"></iframe></div>
+<div class="cell"><span class="lbl">412px / root 20px</span><iframe src="index.html" data-w="412" data-fs="20" width="412" height="620" style="font-size:20px" title="t"></iframe></div>
+<script>
+ // Esperar carga de cada iframe y fijar font-size raíz dentro
+ document.querySelectorAll('iframe').forEach(fr => {
+   fr.addEventListener('load', () => {
+     try { fr.contentDocument.documentElement.style.fontSize = fr.dataset.fs + 'px'; } catch(e) {}
+   });
+ });
+</script>
+</body></html>
